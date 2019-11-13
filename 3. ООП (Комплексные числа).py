@@ -35,11 +35,13 @@ class Complex:
         return Complex((sreal * oreal + simag * omag) / r,
                        (simag * oreal - sreal * omag) / r)
 
-    # def __str__(self):
-    #     return f"({self.real:.2f}{self.imag:+.2f}j)"
     def __str__(self):
-        return f"({self.real:.2f}{(self.imag):+.2f}j)"
-        # return f"({self.real:.2f}{'%+.2f' % self.imag}j)"
+        return f"({self.real:.2f}{self.imag:+.2f}j)"
+    # def __str__(self):
+    #     return '({:.2f})'.format(complex(self.real, self.imag))
+    #     # return f"({self.real:.2f}{'%+.2f' % self.imag}j)"
+    # def __str__(self):
+    #     return '(%.2f%+.2f%c)' % (self.real, self.imag, 'j')
 
 a1 = -66.7231615894444
 a2 = 79.2111027243719
