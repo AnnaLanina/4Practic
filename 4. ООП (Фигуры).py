@@ -1,55 +1,60 @@
+from abc import abstractmethod
+from math import pi, sqrt
+
+
 class Figure():
-    def __init__(self, perimeter=None, space=None):
-        self.perimeter = perimeter
-        self.space = space
-        self.infoFig = []
-
-    def calcPerimeter(self):
+    @abstractmethod
+    def perimeter(self):
         pass
 
-    def calcSpace(srlf):
+    @abstractmethod
+    def area(self):
         pass
 
-    def figInfo(self):
-        p = self.calcPerimeter()
-        s = self.calcSpace()
-        print('периметр = %s площадь = %s' % (p, s))
+
+class Triangle(Figure):
+    def __init__(self, side1, side2, side3):
+        Figure.__init__(self)
+        self.side1 = side1
+        self.side2 = side2
+        self.side3 = side3
+
+    def perimeter(self):
+        return self.side1 + self.side2 + self.side3
+
+    def area(self):
+        p = (self.side1 + self.side2 + self.side3) / 2  # полупериметр
+        return sqrt(p * (p - self.side1) * (p - self.side2) * (p - self.side3))
 
 
 class Rectangle(Figure):
-    def __init__(self, x, y, w, h):
+    def __init__(self, length, width):
         Figure.__init__(self)
-        self.x = x
-        self.y = y
-        self.w = w
-        self.h = h
+        self.length = length
+        self.width = width
 
-    def calcPerimeter(self):
-        perimeter = self.w * 2 + self.h * 2
-        return perimeter
+    def perimeter(self):
+        return (self.length + self.width) * 2
 
-    def calcSpace(self):
-        space = self.x * self.y
-        return space
-
-    def figInfo(self):
-        p = self.calcPerimeter()
-        s = self.calcSpace()
-        print('У прямоугольника периметр = %s площадь = %s' % (p, s))
+    def area(self):
+        return self.length * self.width
 
 
-if __name__ == '__main__':
-    fig1 = Rectangle(5, 5, 10, 10)
-    fig2 = Rectangle(-3, -4, 5, 7)
-    array = [fig1, fig2]
-    for f in array:
-        f.figInfo()
-Zen26, Для
-круга
-и
-треугольника
-попробуйте
-сами
-написать
-по
-а
+class Circle(Figure):
+    def __init__(self, radius):
+        Figure.__init__(self)
+        self.radius = radius
+
+    def perimeter(self):
+        return 2 * pi * self.radius
+
+    def area(self):
+        return pi * self.radius ** 2
+
+
+tri = [93.70222348950283, 50.77844960729303, 55.56273091185004]
+triangle = Triangle(*tri)
+print(triangle.perimeter())
+# >>> 200.0434040086459
+print(triangle.area())
+# >>> 1176.3615190656394
